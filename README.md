@@ -23,7 +23,8 @@ Before you try to run this project you will need to obtain a free API key from
 [OpenWeather](https://home.openweathermap.org)!
 
 So go ahead and sign up and then from the top menu
-click your user name and then from the dop down select `My Api Keys`.
+click your user name and then from the dop down
+select [My Api Keys](https://home.openweathermap.org/api_keys).
 
 ## How to run
 
