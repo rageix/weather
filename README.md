@@ -32,7 +32,8 @@ select [My Api Keys](https://home.openweathermap.org/api_keys).
 2. Clone this repo to the directory of your choice.
 3. From the project root run `npm install`.
 4. From the project root run `npm run dev`.
-5. ... profit!
+5. On first load you will be presented with a dialog to enter your api key.
+6. ...profit!
 
 ## Commands
 
@@ -45,4 +46,4 @@ select [My Api Keys](https://home.openweathermap.org/api_keys).
   with [prettier](https://prettier.io/)
 * `npm run test:unit` - runs tests
 * `npm run type-check` - runs the [Typescript](https://www.typescriptlang.org/)
-  type checker ([Vite](https://vitejs.dev/) does not typecheck)
+  type checker ([Vite](https://vitejs.dev/) does not type check during compilation)
