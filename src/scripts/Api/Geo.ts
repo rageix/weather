@@ -1,4 +1,4 @@
-import AppIdStore from '../Stores/ApiKeyStore.ts';
+import AppIdStore from '../Stores/SettingsStore.ts';
 
 export interface GeoCodeResponseItem {
   name: string;

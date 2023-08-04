@@ -6,20 +6,15 @@ import { classNames } from '../../Shared/Lib.ts';
 
 const controller: Controller = new Controller();
 
-interface Props {
-  selected: Location;
-  onChange: (arg: Location) => void;
-}
-
-export default function SearchBox(props: Props) {
+export default function SearchBox() {
   controller.onRender();
   const state = controller.state;
 
   return (
     <Combobox
       as="div"
-      value={props.selected}
-      onChange={props.onChange}
+      value={state.location}
+      onChange={controller.onChangeLocation}
     >
       <div className="relative">
         <Combobox.Input
@@ -28,28 +23,23 @@ export default function SearchBox(props: Props) {
           displayValue={(item: Location) => item?.value || ''}
           placeholder="Enter City, State, Country"
         />
-
         {state.text.length > 0 && (
           <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {state.items.length === 0 &&
-                <Combobox.Option
-                    value={null}
-                    className={() =>
-                        classNames(
-                            'relative cursor-default select-none py-2 pl-3 pr-9',
-                             'text-gray-900',
-                        )
-                    }
-                >
-                  <span
-                      className={classNames(
-                          'block truncate',
-                      )}
-                  >
-                      No locations found.
-                    </span>
-                </Combobox.Option>
-            }
+            {state.items.length === 0 && (
+              <Combobox.Option
+                value={null}
+                className={() =>
+                  classNames(
+                    'relative cursor-default select-none py-2 pl-3 pr-9',
+                    'text-gray-900',
+                  )
+                }
+              >
+                <span className={classNames('block truncate')}>
+                  No locations found.
+                </span>
+              </Combobox.Option>
+            )}
             {state.items.map((item: Location, index: number) => (
               <Combobox.Option
                 key={index.toString() + item.value}

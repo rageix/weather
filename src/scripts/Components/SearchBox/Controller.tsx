@@ -3,17 +3,22 @@ import { Location } from '../../Shared/Location.ts';
 import { GeoCodeResponseItem, getGeo } from '../../Api/Geo.ts';
 import _ from 'lodash';
 import EmitStore from '../../Stores/EmitStore.ts';
+import SettingsStore from '../../Stores/SettingsStore.ts';
 import { isBlank } from '../../Shared/Lib.ts';
 
 interface State {
+  location: Location;
   items: Location[];
   text: string;
 }
 
-const defaultState: State = {
-  items: [],
-  text: '',
-};
+function defaultState(): State {
+  return {
+    location: SettingsStore.location || null,
+    items: [],
+    text: '',
+  };
+}
 
 export default class Controller {
   state: State;
@@ -53,8 +58,13 @@ export default class Controller {
   };
 
   onChangeText = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log('onChangeText');
     this.setState({ ...this.state, text: event.target.value });
     this.debounce();
+  };
+
+  onChangeLocation = (location: Location) => {
+    this.setState({ ...this.state, location: location });
+    SettingsStore.location = location;
+    EmitStore.emitLocationChanged(location);
   };
 }

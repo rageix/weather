@@ -7,7 +7,6 @@ interface Props {
   onDismiss: () => void;
 }
 export default function Error(props: Props) {
-
   return (
     <Transition
       show={true}
@@ -23,7 +22,10 @@ export default function Error(props: Props) {
         <div className="p-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ExclamationCircleIcon className="h-6 w-6 text-red-400" aria-hidden="true" />
+              <ExclamationCircleIcon
+                className="h-6 w-6 text-red-400"
+                aria-hidden="true"
+              />
             </div>
             <div className="ml-3 flex w-0 flex-1 justify-between">
               <p className="w-0 flex-1 text-sm font-medium text-gray-900">
