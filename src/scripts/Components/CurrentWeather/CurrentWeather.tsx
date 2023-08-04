@@ -32,14 +32,23 @@ export function CurrentWeather() {
   }, []);
 
   return (
-    <div className="mt-4 rounded-lg bg-gradient-to-r from-sky-200 to-blue-200 p-4 mh-28">
+    <div
+      aria-label="current-weather"
+      className="mt-4 rounded-lg bg-gradient-to-r from-sky-200 to-blue-200 p-4 mh-28"
+    >
       {state.loading && (
-        <div className="rounded-md py-4 bg-blue-100 text-center">
+        <div
+          aria-label="current-weather-loading"
+          className="rounded-md py-4 bg-blue-100 text-center"
+        >
           <Loading />
         </div>
       )}
       {!state.loading && !state.current && (
-        <div className="relative block w-full rounded-md p-4 bg-blue-100 text-center">
+        <div
+          aria-label="current-weather-nothing"
+          className="nothing-to-display relative block w-full rounded-md p-4 bg-blue-100 text-center"
+        >
           <span className="block text-sm font-semibold text-gray-900">
             Nothing to display.
             <br />
@@ -48,15 +57,21 @@ export function CurrentWeather() {
         </div>
       )}
       {!state.loading && state.current && (
-        <>
+        <div aria-label="current-weather-results">
           <div className="font-bold w-full leading-6 text-left text-gray-600">
             Current Weather
           </div>
           <div className="rounded-md mt-4 py-4 bg-blue-100">
-            <div className="font-light text-3xl leading-6 text-center text-gray-900">
+            <div
+              id="currentName"
+              className="font-light text-3xl leading-6 text-center text-gray-900"
+            >
               {state.current.name}
             </div>
-            <div className="font-light mt-2 text-sm leading-6 text-center text-gray-900">
+            <div
+              id="currentDate"
+              className="font-light mt-2 text-sm leading-6 text-center text-gray-900"
+            >
               {new Date(state.current.dt * 1000).toLocaleTimeString('en-us', {
                 weekday: 'long',
                 year: 'numeric',
@@ -64,10 +79,16 @@ export function CurrentWeather() {
                 day: 'numeric',
               })}
             </div>
-            <div className="mt-2 text-center text-7xl">
+            <div
+              id="currentTemp"
+              className="mt-2 text-center text-7xl"
+            >
               {Math.round(state.current.main.temp)}
             </div>
-            <div className="mt-2">
+            <div
+              id="currentWeatherMain"
+              className="mt-2"
+            >
               <div className="text-center text-2xl font-medium leading-6 text-gray-900">
                 {state.current.weather[0].main}
               </div>
@@ -75,19 +96,33 @@ export function CurrentWeather() {
           </div>
           <div className="columns-3 mt-4 rounded-md py-2 bg-blue-100">
             <div className="text-center">
-              <div className="font-medium leading-6 text-gray-600">Feels</div>
+              <div
+                id="currentFeels"
+                className="font-medium leading-6 text-gray-600"
+              >
+                Feels
+              </div>
               <div>{Math.round(state.current.main.feels_like)}</div>
             </div>
-            <div className="text-center">
+            <div
+              id="currentLow"
+              className="text-center"
+            >
               <div className="font-medium leading-6 text-gray-600">Low</div>
               <div>{Math.round(state.current.main.temp_min)}</div>
             </div>
-            <div className="text-center">
+            <div
+              id="currentHigh"
+              className="text-center"
+            >
               <div className="font-medium leading-6 text-gray-600">High</div>
               <div>{Math.round(state.current.main.temp_max)}</div>
             </div>
           </div>
-          <div className="columns-2 mt-4 rounded-md py-2 bg-blue-100">
+          <div
+            id="currentWind"
+            className="columns-2 mt-4 rounded-md py-2 bg-blue-100"
+          >
             <div className="text-center">
               <div className="font-medium leading-6 text-gray-600">Wind</div>
               <div>
@@ -95,14 +130,20 @@ export function CurrentWeather() {
                 {Math.round(state.current.wind.speed)}
               </div>
             </div>
-            <div className="text-center">
+            <div
+              id="currentHumiddity"
+              className="text-center"
+            >
               <div className="font-medium leading-6 text-gray-600">
                 Humidity
               </div>
               <div>{Math.round(state.current.main.humidity)}</div>
             </div>
           </div>
-          <div className="columns-2 mt-4 rounded-md py-2 bg-blue-100">
+          <div
+            id="currentSunrise"
+            className="columns-2 mt-4 rounded-md py-2 bg-blue-100"
+          >
             <div className="text-center">
               <div className="font-medium leading-6 text-gray-600">Sunrise</div>
               <div>
@@ -116,7 +157,12 @@ export function CurrentWeather() {
               </div>
             </div>
             <div className="text-center">
-              <div className="font-medium leading-6 text-gray-600">Sunset</div>
+              <div
+                id="currentSunset"
+                className="font-medium leading-6 text-gray-600"
+              >
+                Sunset
+              </div>
               <div>
                 {new Date(state.current.sys.sunset * 1000).toLocaleTimeString(
                   'en-us',
@@ -128,7 +174,7 @@ export function CurrentWeather() {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

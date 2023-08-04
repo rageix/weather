@@ -1,17 +1,8 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// import { dependencies } from './package.json';
-// function renderChunks(deps: Record<string, string>) {
-//   const chunks = {};
-//   Object.keys(deps).forEach((key) => {
-//     if (['react', 'react-router-dom', 'react-dom'].includes(key)) return;
-//     chunks[key] = [key];
-//   });
-//   return chunks;
-// }
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,14 +11,12 @@ export default defineConfig({
     open: '/',
   },
   plugins: [react()],
-  // build: {
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         vendor: ['react', 'react-router-dom', 'react-dom'],
-  //         ...renderChunks(dependencies),
-  //       },
-  //     },
-  //   },
-  // },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: '__tests__/Setup.ts',
+    // you might want to disable it, if you don't have tests that rely on CSS
+    // since parsing CSS is slow
+    css: true,
+  },
 });

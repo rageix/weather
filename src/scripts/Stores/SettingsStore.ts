@@ -2,14 +2,9 @@ import emitStore from './EmitStore.ts';
 import { isUnit, Unit } from '../Shared/Units.ts';
 import { Location } from '../Shared/Location.ts';
 import { isBlank } from '../Shared/Lib.ts';
+import {localStorageKey} from "./Enums.ts";
 
-enum localStorageKey {
-  apiKey = 'apiKey',
-  unit = 'unit',
-  location = 'location',
-}
-
-export class SettingsStore {
+class SettingsStore {
   _apiKey: string;
   _unit: Unit = 'imperial';
   _location: Location;
@@ -36,12 +31,10 @@ export class SettingsStore {
       const unit = params.get('unit');
 
       if (isUnit(unit)) {
-        console.log(`load from url: ${unit}`);
         this.unit = unit as Unit;
       } else {
         const unit = localStorage.getItem(localStorageKey.unit) as Unit;
         if (isUnit(unit)) {
-          console.log(`load from local storage: ${unit}`);
           this._unit = unit;
         }
       }
@@ -58,9 +51,9 @@ export class SettingsStore {
       console.log('No location is found using default.');
     }
 
-    console.log(`loaded unit: ${this._unit}`);
-    console.log(`apiKey: ${this._apiKey}`);
-    console.log(`location: ${this._location}`);
+    // console.log(`loaded unit: ${this._unit}`);
+    console.log(`loaded apiKey: ${this._apiKey}`);
+    // console.log(`location: ${JSON.stringify(this._location)}`);
   }
 
   get apiKey() {
@@ -91,5 +84,5 @@ export class SettingsStore {
   }
 }
 
-const self = new SettingsStore();
-export default self;
+const store = new SettingsStore();
+export default store;

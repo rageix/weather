@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Milwaukee",
+    "local_names": {
+      "zh": "密尔沃基",
+      "ar": "ميلواكي",
+      "ru": "Милуоки",
+      "eo": "Milvokio",
+      "oc": "Milwaukee",
+      "en": "Milwaukee",
+      "uk": "Мілвокі"
+    },
+    "lat": 43.0349931,
+    "lon": -87.922497,
+    "country": "US",
+    "state": "Wisconsin"
+  },
+  {
+    "name": "Milwaukee",
+    "lat": 41.4225784,
+    "lon": -75.7776937,
+    "country": "US",
+    "state": "Pennsylvania"
+  },
+  {
+    "name": "Milwaukee",
+    "lat": 36.4054313,
+    "lon": -77.2321893,
+    "country": "US",
+    "state": "North Carolina"
+  }
+]

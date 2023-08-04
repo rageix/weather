@@ -17,10 +17,12 @@ export function Component() {
   }, []);
 
   return (
-    <div className="container h-full min-h-screen mx-auto max-w-md p-4 bg-gradient-to-r from-sky-400 to-blue-600">
+    <div aria-label="home-view"
+         className="container h-full min-h-screen mx-auto max-w-md p-4 bg-gradient-to-r from-sky-400 to-blue-600">
       <div className="flex items-start items-center">
         <div className="flex-shrink-0 mr-2">
           <ArrowPathIcon
+            aria-label="reload"
             className="h-9 text-gray-200 hover:text-gray-300 cursor-pointer"
             aria-hidden="true"
             onClick={EmitStore.emitReloadWeather}
@@ -31,6 +33,7 @@ export function Component() {
         </div>
         <div className="flex-shrink-0 ml-2">
           <Cog6ToothIcon
+            aria-label="show-settings"
             className="h-9 text-gray-200 hover:text-gray-300 cursor-pointer"
             aria-hidden="true"
             onClick={EmitStore.emitShowSettings}

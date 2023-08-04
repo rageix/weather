@@ -36,20 +36,24 @@ export function HourlyWeather() {
   }
 
   return (
-    <div className="mt-4 rounded-lg bg-gradient-to-r from-sky-200 to-blue-200 p-4 mh-28">
+    <div aria-label="hourly-weather"
+         className="mt-4 rounded-lg bg-gradient-to-r from-sky-200 to-blue-200 p-4 mh-28">
       {state.loading && (
         <div className="rounded-md py-4 bg-blue-100 text-center">
           <Loading />
         </div>
       )}
       {!state.loading && state.hourly && (
-        <>
+        <div aria-label="hourly-weather-results">
           <div className="font-bold w-full leading-6 text-left text-gray-600">
             24 Hour Forecast
           </div>
           {state.hourly.list.slice(0, 8).map((v) => {
             return (
-              <div className="mt-4 rounded-md p-2 bg-blue-100">
+              <div
+                key={v.dt}
+                className="item mt-4 rounded-md p-2 bg-blue-100"
+              >
                 <div className="font-medium flex-shrink-0 leading-6 text-center text-gray-600">
                   {new Date(v.dt * 1000).toLocaleDateString('en-us', {
                     weekday: 'long',
@@ -82,7 +86,7 @@ export function HourlyWeather() {
               </div>
             );
           })}
-        </>
+        </div>
       )}
     </div>
   );
