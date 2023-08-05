@@ -6,6 +6,7 @@ export enum emitterMessage {
   showSettings = 'showSettings',
   locationChanged = 'locationChanged',
   reloadWeather = 'reloadWeather',
+  settingsLoaded = 'settingsLoaded'
 }
 
 export class EmitStore {
@@ -26,6 +27,11 @@ export class EmitStore {
   emitLocationChanged = (arg: Location) => {
     this.emitter.emit(emitterMessage.locationChanged, arg);
   };
+
+  emitSettingsLoaded = () => {
+    this.emitter.emit(emitterMessage.settingsLoaded);
+  };
+
 }
 
 const self = new EmitStore();

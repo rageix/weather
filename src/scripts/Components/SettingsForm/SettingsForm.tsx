@@ -12,7 +12,7 @@ export default function SettingsForm() {
   const state = controller.state;
 
   return (
-    <div>
+    <div aria-label="settings-form">
       <p className="text-sm font-bold text-gray-900">
         What units would you like to use?
       </p>

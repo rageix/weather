@@ -2,7 +2,7 @@ import emitStore from './EmitStore.ts';
 import { isUnit, Unit } from '../Shared/Units.ts';
 import { Location } from '../Shared/Location.ts';
 import { isBlank } from '../Shared/Lib.ts';
-import {localStorageKey} from "./Enums.ts";
+import { localStorageKey } from './Enums.ts';
 
 class SettingsStore {
   _apiKey: string;
@@ -10,6 +10,10 @@ class SettingsStore {
   _location: Location;
 
   constructor() {
+    this.load();
+  }
+
+  load = () => {
     try {
       const params = new URLSearchParams(document.location.search);
       const apiKey = params.get('apiKey');
@@ -52,9 +56,11 @@ class SettingsStore {
     }
 
     // console.log(`loaded unit: ${this._unit}`);
-    console.log(`loaded apiKey: ${this._apiKey}`);
+    // console.log(`loaded apiKey: ${this._apiKey}`);
     // console.log(`location: ${JSON.stringify(this._location)}`);
-  }
+
+    emitStore.emitSettingsLoaded();
+  };
 
   get apiKey() {
     return this._apiKey;
