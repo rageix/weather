@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { setGoodStorage } from '../../../__tests__/Mocks/LocalStorage.ts';
+import SettingsStore from "../../Stores/SettingsStore.ts";
+import SearchBox from "./SearchBox.tsx";
 
 describe('search box', () => {
   afterEach(() => {
@@ -9,9 +11,9 @@ describe('search box', () => {
 
   it('renders correctly', async () => {
     setGoodStorage();
+    SettingsStore.load();
 
-    const component = await import('./SearchBox.tsx');
-    const result = render(<component.SearchBox />);
+    render(<SearchBox />);
 
     expect(screen.getByLabelText('search-box')).toBeVisible();
 
@@ -20,23 +22,30 @@ describe('search box', () => {
 
     expect(searchInput.value).toBe('milwaukee');
 
+    const searchOptions = screen.getByLabelText('search-options');
+
     await waitFor(() => {
-      expect(screen.getByLabelText('search-options')).toBeVisible();
+      expect(searchOptions).toBeVisible();
+    });
+
+    await waitFor(() => {
       expect(
-        result.container.querySelectorAll(
-          '[aria-label="search-options"] .option',
+        searchOptions.querySelectorAll(
+          '.option',
         ),
       ).toHaveLength(3);
     });
 
     fireEvent.click(
-      result.container.querySelectorAll(
-        '[aria-label="search-options"] .option',
+      searchOptions.querySelectorAll(
+        '.option',
       )[0],
     );
 
     await waitFor(() => {
       expect(searchInput.value).toBe('Milwaukee, Wisconsin, US');
     });
+
+    expect(SettingsStore.location.value).toBe('Milwaukee, Wisconsin, US');
   });
 });

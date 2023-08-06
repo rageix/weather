@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import Controller from './Controller.tsx';
-import Error from './Error.tsx';
+import Error from '../Error/Error.tsx';
 
 const controller = new Controller();
-export default function Example() {
+export default function Notifications() {
   controller.onRender();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export default function Example() {
   return (
     <>
       <div
+        aria-label="notifications"
         aria-live="assertive"
         className="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"
       >

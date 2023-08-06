@@ -24,7 +24,7 @@ export default function SettingsForm() {
               className="flex items-center"
             >
               <input
-                id={option.value}
+                aria-label={option.value}
                 name="notification-method"
                 type="radio"
                 checked={state.unit.value === option.value}
@@ -53,6 +53,7 @@ export default function SettingsForm() {
             type="text"
             name="apiKey"
             id="apiKey"
+            aria-label="api-key"
             className={classNames(
               'block w-full shadow-sm rounded-md border-0 py-1.5 ring-1 ring-inset pr-10 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
               fieldNotValid('apiKey', state.errors)

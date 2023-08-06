@@ -1,24 +1,22 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { setGoodStorage } from '../../../__tests__/Mocks/LocalStorage.ts';
+import SettingsStore from '../../Stores/SettingsStore.ts';
+import CurrentWeather from './CurrentWeather.tsx';
 
 describe('current weather', () => {
-  afterEach(() => {
-    window.localStorage.clear();
-  });
-
   it('renders correctly', async () => {
     setGoodStorage();
+    SettingsStore.load();
 
-    const component = await import('./CurrentWeather.tsx');
-    const result = render(<component.CurrentWeather />);
+    render(<CurrentWeather />);
 
     await waitFor(() => {
       expect(screen.getByLabelText('current-weather-results')).toBeVisible();
       expect(
-        result.container.querySelector(
-          '[aria-label="current-weather-results"] #currentTemp',
-        ).innerHTML,
+        screen
+          .getByLabelText('current-weather-results')
+          .querySelector('#currentTemp').innerHTML,
       ).toBe('80');
     });
   });

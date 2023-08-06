@@ -18,7 +18,7 @@ export default function Error(props: Props) {
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >
-      <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+      <div className="error pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
         <div className="p-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -35,7 +35,7 @@ export default function Error(props: Props) {
             <div className="ml-4 flex flex-shrink-0">
               <button
                 type="button"
-                className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="close inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 onClick={props.onDismiss}
               >
                 <span className="sr-only">Close</span>
